@@ -4,16 +4,20 @@
 
 ```mermaid
 flowchart LR
-    U[User / Analyst]
+    U[Student / Researcher]
     G[Project Guide / Evaluator]
-    S((ML Optimization & XAI System))
-    A[Upload / Select Dataset]
-    B[Preprocess Data]
-    C[Train Baseline Model]
-    D[Run Hyperparameter Optimization]
-    E[Evaluate Model]
-    F[Generate XAI Explanation]
-    H[View Reports]
+    S((HPO-XAI Research System))
+    A[Load Bank Marketing Dataset]
+    B[Validate & Preprocess]
+    C[Analyze Class Imbalance]
+    D[Train Baseline]
+    E[Configure HPO]
+    F[Run HPO Strategies]
+    H[Evaluate Models]
+    I[Generate SHAP Explanations]
+    J[Analyze Explanation Stability]
+    K[Compare Results]
+    L[Generate Research Report]
     U --> A
     U --> B
     U --> C
@@ -21,7 +25,12 @@ flowchart LR
     U --> E
     U --> F
     U --> H
-    G --> H
+    U --> I
+    U --> J
+    U --> K
+    U --> L
+    G --> K
+    G --> L
 ```
 
 ## 2. Class Diagram
@@ -30,12 +39,18 @@ flowchart LR
 classDiagram
     class DatasetManager {
       +load_dataset()
-      +validate_dataset()
+      +validate_schema()
+      +validate_target()
+      +check_class_distribution()
     }
     class Preprocessor {
-      +clean_data()
-      +transform_features()
-      +split_data()
+      +build_pipeline()
+      +encode_features()
+      +split_stratified()
+    }
+    class ImbalanceManager {
+      +analyze_distribution()
+      +apply_training_strategy()
     }
     class ModelManager {
       +train_baseline()
@@ -43,96 +58,124 @@ classDiagram
     }
     class Optimizer {
       +define_search_space()
-      +run_optimization()
+      +run_grid_search()
+      +run_random_search()
+      +run_tpe_search()
       +get_best_parameters()
     }
     class Evaluator {
       +calculate_metrics()
+      +measure_runtime()
       +compare_models()
     }
     class Explainer {
-      +global_explanation()
-      +local_explanation()
-      +feature_importance()
+      +global_shap()
+      +local_shap()
+      +feature_ranking()
+    }
+    class StabilityAnalyzer {
+      +compare_rankings()
+      +calculate_consistency()
+    }
+    class Reporter {
+      +save_results()
+      +generate_plots()
+      +generate_report()
     }
     DatasetManager --> Preprocessor
-    Preprocessor --> ModelManager
+    Preprocessor --> ImbalanceManager
+    ImbalanceManager --> ModelManager
     ModelManager --> Optimizer
     Optimizer --> Evaluator
     ModelManager --> Evaluator
     ModelManager --> Explainer
+    Explainer --> StabilityAnalyzer
+    Evaluator --> Reporter
+    StabilityAnalyzer --> Reporter
 ```
 
 ## 3. Activity Diagram
 
 ```mermaid
 flowchart TD
-    A([Start]) --> B[Select Dataset]
-    B --> C[Validate and Preprocess]
-    C --> D[Train Baseline Model]
-    D --> E[Evaluate Baseline]
-    E --> F[Define Hyperparameter Search Space]
-    F --> G[Run Optimization]
-    G --> H[Select Best Parameters]
-    H --> I[Train Optimized Model]
-    I --> J[Evaluate Optimized Model]
-    J --> K[Generate SHAP/XAI Explanations]
-    K --> L[Compare Results]
-    L --> M[Generate Documentation]
-    M --> N([End])
+    A([Start]) --> B[Load UCI Bank Marketing]
+    B --> C[Validate Schema and Target]
+    C --> D[Analyze Class Imbalance]
+    D --> E[Build Leakage-Safe Preprocessing]
+    E --> F[Train Baseline Model]
+    F --> G[Evaluate Baseline]
+    G --> H[Define HPO Search Spaces]
+    H --> I[Run Grid / Random / TPE Search]
+    I --> J[Select Best Configuration]
+    J --> K[Train Optimized Model]
+    K --> L[Evaluate Optimized Model]
+    L --> M[Generate SHAP Explanations]
+    M --> N[Analyze Explanation Stability]
+    N --> O[Compare Performance, Cost and XAI]
+    O --> P[Generate Research Report]
+    P --> Q([End])
 ```
 
 ## 4. Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-    actor User
+    actor Researcher
     participant Data as Dataset Manager
     participant Prep as Preprocessor
     participant Model as Model Manager
-    participant Opt as Optimizer
+    participant Opt as HPO Engine
     participant Eval as Evaluator
-    participant XAI as Explainer
-    User->>Data: Select dataset
-    Data->>Prep: Send validated data
-    Prep->>Model: Prepared train/test data
+    participant XAI as SHAP Explainer
+    participant Stab as Stability Analyzer
+    participant Rep as Reporter
+    Researcher->>Data: Load Bank Marketing
+    Data->>Prep: Validated data
+    Prep->>Model: Train/test-ready features
     Model->>Eval: Baseline predictions
-    Eval-->>Model: Baseline metrics
-    Model->>Opt: Request optimization
-    Opt->>Model: Candidate parameters
+    Eval-->>Researcher: Baseline metrics
+    Researcher->>Opt: Start HPO strategies
+    Opt->>Model: Candidate hyperparameters
     Model->>Eval: Candidate predictions
-    Eval-->>Opt: Validation score
-    Opt-->>Model: Best parameters
+    Eval-->>Opt: Validation objective
+    Opt-->>Model: Best configuration
     Model->>Eval: Optimized predictions
-    Eval-->>User: Final metrics
-    Model->>XAI: Optimized model + data
-    XAI-->>User: Feature and prediction explanations
+    Eval-->>Rep: Performance + runtime
+    Model->>XAI: Model + evaluation samples
+    XAI->>Stab: SHAP explanations
+    Stab-->>Rep: Stability results
+    Rep-->>Researcher: Comparative research report
 ```
 
 ## 5. Component Diagram
 
 ```mermaid
 flowchart LR
-    UI[User / Notebook Interface] --> DATA[Data Component]
+    UI[Notebook / Research Interface] --> DATA[Dataset Component]
     DATA --> PREP[Preprocessing Component]
-    PREP --> MODEL[ML Model Component]
-    MODEL --> OPT[Optimization Component]
+    PREP --> IMB[Imbalance Component]
+    IMB --> MODEL[ML Model Component]
+    MODEL --> HPO[HPO Component]
     MODEL --> EVAL[Evaluation Component]
     MODEL --> XAI[XAI Component]
+    XAI --> STAB[Stability Component]
     EVAL --> REPORT[Reporting Component]
-    XAI --> REPORT
+    STAB --> REPORT
 ```
 
 ## 6. Deployment Diagram
 
 ```mermaid
 flowchart TB
-    Laptop[Developer Laptop]
-    IDE[Python / Jupyter Environment]
-    Laptop --> IDE
-    IDE --> Pipeline[ML + Optimization + XAI Pipeline]
-    Pipeline --> Dataset[Local/Public Dataset]
-    Pipeline --> Output[Reports / Charts / Documentation]
-    GitHub[GitHub Repository]
-    IDE <--> GitHub
+    Laptop[Student Laptop]
+    Python[Python / Jupyter Environment]
+    Pipeline[HPO + ML + XAI Pipeline]
+    Data[Local Copy of Public Dataset]
+    Output[Experiment Results / Charts / Reports]
+    GitHub[GitHub SEPM Repository]
+    Laptop --> Python
+    Python --> Pipeline
+    Pipeline --> Data
+    Pipeline --> Output
+    Python <--> GitHub
 ```
