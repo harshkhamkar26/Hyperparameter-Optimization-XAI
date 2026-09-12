@@ -1,6 +1,15 @@
-# Hyperparameter Optimization with Explainable AI — SEPM Documentation
+# Explainable Hyperparameter Optimization for Imbalanced Tabular Classification — SEPM Documentation
 
-This repository is currently dedicated to the **Software Engineering and Project Management (SEPM)** documentation for the project.
+This repository contains the **Software Engineering and Project Management (SEPM)** documentation for an academic research project on hyperparameter optimization and Explainable AI.
+
+## Current Research Scope
+
+**Dataset:** UCI Bank Marketing Dataset  
+**Task:** Binary classification of term-deposit subscription (`yes` / `no`)  
+**Core theme:** Hyperparameter optimization + Explainable AI  
+**Research focus:** Predictive performance, optimization efficiency, class-imbalance handling and explanation stability
+
+The project does **not** claim novelty merely from applying HPO and SHAP to Bank Marketing. Recent literature already covers that combination. The intended contribution is a controlled comparison of optimization strategies and their effect on performance, computational cost and explanation stability.
 
 ## SEPM Documents
 
@@ -15,9 +24,18 @@ This repository is currently dedicated to the **Software Engineering and Project
 9. Requirements Traceability Matrix
 10. Project Management
 11. Detailed Design Description
+12. Literature Review and Research Gap
 
-All documents are stored under `docs/SEPM/` and will be updated as the project requirements and implementation are finalized.
+All project documentation is stored under `docs/SEPM/`.
 
-## Project Lifecycle
+## Proposed Research Workflow
 
-**Requirements → Feasibility → Planning → Analysis → Design → UML → Testing → Traceability → Documentation → Review**
+**Dataset → Validation → Leakage-safe preprocessing → Imbalance analysis → Baseline → HPO strategies → Evaluation → SHAP → Explanation stability → Comparative analysis → Research report**
+
+## Planned Technology Stack
+
+Python, Pandas, NumPy, Scikit-learn, Optuna, SHAP, imbalanced-learn, Matplotlib/Seaborn and Jupyter Notebook.
+
+## Version Control
+
+GitHub is used to track requirements, design decisions, UML, testing and research-document changes. Implementation will be added only after the SEPM scope is approved.
