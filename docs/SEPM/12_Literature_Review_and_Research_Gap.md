@@ -6,20 +6,20 @@ The project focuses on machine-learning-based **cybersecurity intrusion detectio
 ## 2. Key Literature Directions
 
 ### A. Benchmark IDS datasets
-CIC-IDS2017 provides labeled benign and attack network flows and is widely used for IDS evaluation. The official dataset documentation describes multiple attack scenarios and flow-level CSV data. citeturn0search0
+CIC-IDS2017 provides labeled benign and attack network flows and is widely used for IDS evaluation. Its official documentation describes multiple attack scenarios and flow-level CSV data. See Reference 3.
 
-UNSW-NB15 contains normal traffic and nine attack families, with 49 engineered features and more than 2.5 million records in the full dataset. UNSW provides predefined training and testing files as well. citeturn0search1
+UNSW-NB15 contains normal traffic and nine attack families, with 49 engineered features and more than 2.5 million records in the full dataset. UNSW also provides predefined training and testing files. See Reference 4.
 
 ### B. Explainable IDS
-Recent work has used SHAP for explainable intrusion detection. A 2025 IEEE conference paper proposed an explainable IIoT intrusion-detection methodology using SHAP and LIME on WUSTL-IIoT-2021, demonstrating the growing use of XAI for security models. citeturn0search14
+Recent work has used SHAP for explainable intrusion detection. A 2025 IEEE conference paper proposed an explainable IIoT intrusion-detection methodology using SHAP and LIME on WUSTL-IIoT-2021. See Reference 5.
 
-A recent IEEE conference publication also combines LightGBM, Optuna-based hyperparameter optimization and SHAP on CICIDS2017, showing that **HPO + SHAP + IDS is already an active combination**. Therefore, the project must not claim novelty from this combination alone. citeturn0search5
+A recent IEEE conference publication combines LightGBM, Optuna-based hyperparameter optimization and SHAP on CICIDS2017, showing that **HPO + SHAP + IDS is already an active combination**. Therefore, the project must not claim novelty from this combination alone. See Reference 6.
 
 ### C. Imbalance and evaluation
-Recent IDS studies continue to emphasize skewed attack distributions and the need for metrics beyond accuracy. A 2026 comparative study using UNSW-NB15 and CIC-IDS2017 reports substantial benign/attack imbalance and evaluates precision, recall, F1, MCC and AUROC. citeturn0search7
+Recent IDS studies continue to emphasize skewed attack distributions and the need for metrics beyond accuracy. A 2026 comparative study using UNSW-NB15 and CIC-IDS2017 reports substantial benign/attack imbalance and evaluates precision, recall, F1, MCC and AUROC. See Reference 9.
 
 ### D. Cross-dataset and robustness considerations
-Recent work evaluates IDS models across UNSW-NB15 and CIC-IDS2017 rather than relying on a single benchmark, reinforcing the importance of dataset-specific artifacts and generalization. citeturn0search2turn0search10
+Recent work evaluates IDS models across UNSW-NB15 and CIC-IDS2017 rather than relying on a single benchmark, reinforcing the importance of dataset-specific artifacts and generalization. See References 9 and 10.
 
 ## 3. Research Gap
 The literature establishes that:
@@ -64,3 +64,15 @@ The test set must remain untouched during HPO. Preprocessing and resampling must
 
 ## 7. Expected Contribution
 An empirical, reproducible framework that demonstrates how optimization and imbalance handling influence not only IDS predictive performance but also computational cost and the stability of explanations.
+
+## 8. References Used for This Review
+1. Sharafaldin et al. (2018), CIC-IDS2017 dataset paper.
+2. Moustafa & Slay (2015), UNSW-NB15 dataset paper.
+3. Official CIC-IDS2017 dataset documentation.
+4. Official UNSW-NB15 dataset documentation.
+5. 2025 IEEE ICHORA paper on SHAP/LIME-based explainable IIoT intrusion detection, DOI: 10.1109/ICHORA65333.2025.11017105.
+6. 2025 IEEE AECE paper on explainable/privacy-preserving multi-class IDS using LightGBM, Optuna and SHAP, DOI: 10.1109/AECE67531.2025.11386640.
+7. Lundberg & Lee (2017), SHAP.
+8. Akiba et al. (2019), Optuna.
+9. 2026 Electronics paper comparing IDS approaches on UNSW-NB15 and CIC-IDS2017, DOI: 10.3390/electronics15081603.
+10. 2026 Electronics paper using UNSW-NB15 and CIC-IDS2017 for network IDS evaluation, DOI: 10.3390/electronics15081737.
