@@ -1,181 +1,86 @@
 # UML Diagrams
 
+## System
+**An Explainable Hyperparameter Optimization Framework for Imbalanced Cybersecurity Intrusion Detection**
+
 ## 1. Use Case Diagram
 
 ```mermaid
 flowchart LR
-    U[Student / Researcher]
-    G[Project Guide / Evaluator]
-    S((HPO-XAI Research System))
-    A[Load Bank Marketing Dataset]
-    B[Validate & Preprocess]
-    C[Analyze Class Imbalance]
-    D[Train Baseline]
-    E[Configure HPO]
-    F[Run HPO Strategies]
-    H[Evaluate Models]
-    I[Generate SHAP Explanations]
-    J[Analyze Explanation Stability]
-    K[Compare Results]
-    L[Generate Research Report]
-    U --> A
-    U --> B
-    U --> C
-    U --> D
-    U --> E
-    U --> F
-    U --> H
-    U --> I
-    U --> J
-    U --> K
-    U --> L
-    G --> K
-    G --> L
+    Analyst[Security / ML Analyst]
+    System[IDS Research Framework]
+    Analyst -->|Select dataset| System
+    Analyst -->|Configure experiments| System
+    Analyst -->|Run baseline| System
+    Analyst -->|Run HPO| System
+    Analyst -->|Evaluate models| System
+    Analyst -->|Generate SHAP| System
+    Analyst -->|Run stability analysis| System
+    Analyst -->|View results| System
 ```
 
-## 2. Class Diagram
-
-```mermaid
-classDiagram
-    class DatasetManager {
-      +load_dataset()
-      +validate_schema()
-      +validate_target()
-      +check_class_distribution()
-    }
-    class Preprocessor {
-      +build_pipeline()
-      +encode_features()
-      +split_stratified()
-    }
-    class ImbalanceManager {
-      +analyze_distribution()
-      +apply_training_strategy()
-    }
-    class ModelManager {
-      +train_baseline()
-      +train_optimized()
-    }
-    class Optimizer {
-      +define_search_space()
-      +run_grid_search()
-      +run_random_search()
-      +run_tpe_search()
-      +get_best_parameters()
-    }
-    class Evaluator {
-      +calculate_metrics()
-      +measure_runtime()
-      +compare_models()
-    }
-    class Explainer {
-      +global_shap()
-      +local_shap()
-      +feature_ranking()
-    }
-    class StabilityAnalyzer {
-      +compare_rankings()
-      +calculate_consistency()
-    }
-    class Reporter {
-      +save_results()
-      +generate_plots()
-      +generate_report()
-    }
-    DatasetManager --> Preprocessor
-    Preprocessor --> ImbalanceManager
-    ImbalanceManager --> ModelManager
-    ModelManager --> Optimizer
-    Optimizer --> Evaluator
-    ModelManager --> Evaluator
-    ModelManager --> Explainer
-    Explainer --> StabilityAnalyzer
-    Evaluator --> Reporter
-    StabilityAnalyzer --> Reporter
-```
-
-## 3. Activity Diagram
+## 2. Activity Diagram
 
 ```mermaid
 flowchart TD
-    A([Start]) --> B[Load UCI Bank Marketing]
-    B --> C[Validate Schema and Target]
-    C --> D[Analyze Class Imbalance]
-    D --> E[Build Leakage-Safe Preprocessing]
-    E --> F[Train Baseline Model]
-    F --> G[Evaluate Baseline]
-    G --> H[Define HPO Search Spaces]
-    H --> I[Run Grid / Random / TPE Search]
-    I --> J[Select Best Configuration]
-    J --> K[Train Optimized Model]
-    K --> L[Evaluate Optimized Model]
-    L --> M[Generate SHAP Explanations]
-    M --> N[Analyze Explanation Stability]
-    N --> O[Compare Performance, Cost and XAI]
-    O --> P[Generate Research Report]
-    P --> Q([End])
+A[Load IDS Dataset] --> B[Validate and Audit]
+B --> C[Split Data]
+C --> D[Preprocess]
+D --> E[Analyze Imbalance]
+E --> F[Train Baseline]
+F --> G[Apply HPO / Imbalance Strategy]
+G --> H[Evaluate]
+H --> I[Generate SHAP]
+I --> J[Measure Explanation Stability]
+J --> K[Compare Results]
+K --> L[Research Report]
 ```
 
-## 4. Sequence Diagram
+## 3. Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-    actor Researcher
-    participant Data as Dataset Manager
-    participant Prep as Preprocessor
-    participant Model as Model Manager
-    participant Opt as HPO Engine
-    participant Eval as Evaluator
-    participant XAI as SHAP Explainer
-    participant Stab as Stability Analyzer
-    participant Rep as Reporter
-    Researcher->>Data: Load Bank Marketing
-    Data->>Prep: Validated data
-    Prep->>Model: Train/test-ready features
-    Model->>Eval: Baseline predictions
-    Eval-->>Researcher: Baseline metrics
-    Researcher->>Opt: Start HPO strategies
-    Opt->>Model: Candidate hyperparameters
-    Model->>Eval: Candidate predictions
-    Eval-->>Opt: Validation objective
-    Opt-->>Model: Best configuration
-    Model->>Eval: Optimized predictions
-    Eval-->>Rep: Performance + runtime
-    Model->>XAI: Model + evaluation samples
-    XAI->>Stab: SHAP explanations
-    Stab-->>Rep: Stability results
-    Rep-->>Researcher: Comparative research report
+participant A as Analyst
+participant D as Data Module
+participant M as Model Module
+participant O as HPO Module
+participant X as XAI Module
+participant R as Report Module
+A->>D: Load and validate dataset
+D->>M: Prepared training data
+M->>O: Baseline/model configuration
+O->>M: Trial parameters
+M->>O: Validation metrics
+O->>X: Best models
+X->>R: SHAP + stability results
+R->>A: Comparative report
 ```
 
-## 5. Component Diagram
+## 4. Component View
 
-```mermaid
-flowchart LR
-    UI[Notebook / Research Interface] --> DATA[Dataset Component]
-    DATA --> PREP[Preprocessing Component]
-    PREP --> IMB[Imbalance Component]
-    IMB --> MODEL[ML Model Component]
-    MODEL --> HPO[HPO Component]
-    MODEL --> EVAL[Evaluation Component]
-    MODEL --> XAI[XAI Component]
-    XAI --> STAB[Stability Component]
-    EVAL --> REPORT[Reporting Component]
-    STAB --> REPORT
+```text
+[Dataset Manager] → [Preprocessing] → [Imbalance Handler]
+                                      ↓
+[Experiment Config] → [Baseline/Model] → [HPO Engine]
+                                      ↓
+                              [Evaluation Engine]
+                                      ↓
+                                [SHAP Engine]
+                                      ↓
+                           [Stability Analyzer]
+                                      ↓
+                              [Report Generator]
 ```
 
-## 6. Deployment Diagram
+## 5. Deployment View
 
-```mermaid
-flowchart TB
-    Laptop[Student Laptop]
-    Python[Python / Jupyter Environment]
-    Pipeline[HPO + ML + XAI Pipeline]
-    Data[Local Copy of Public Dataset]
-    Output[Experiment Results / Charts / Reports]
-    GitHub[GitHub SEPM Repository]
-    Laptop --> Python
-    Python --> Pipeline
-    Pipeline --> Data
-    Pipeline --> Output
-    Python <--> GitHub
+```text
+Student Workstation
+ ├── Python/Jupyter
+ ├── ML + HPO Libraries
+ ├── Dataset Storage
+ ├── Experiment Logs
+ └── GitHub Documentation
 ```
+
+Dataset-specific labels and model names will be finalized after dataset selection.
