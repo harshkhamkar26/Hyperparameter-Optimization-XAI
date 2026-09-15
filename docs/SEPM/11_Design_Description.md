@@ -1,82 +1,48 @@
-# Detailed Design Description
+# Design Description
 
 ## 1. Data Flow
-1. Load the UCI Bank Marketing dataset.
-2. Validate schema, target values and data quality.
-3. Separate target `y` from predictors.
-4. Create stratified train/validation/test partitions.
-5. Build preprocessing pipelines using training data only.
-6. Analyze class imbalance.
-7. Train baseline classifier(s).
-8. Evaluate baseline using class-sensitive metrics.
-9. Define HPO search spaces and optimization strategies.
-10. Run bounded HPO experiments and record every trial.
-11. Select the best configuration using the predefined validation objective.
-12. Retrain/evaluate the optimized model without touching the final test set during tuning.
-13. Generate global and local SHAP explanations.
-14. Compare baseline and optimized feature attributions.
-15. Calculate explanation stability/consistency using the documented repeated-sample or fold procedure.
-16. Produce final performance, efficiency and XAI comparisons.
 
-## 2. Primary Classification Task
-The binary target is:
-- `yes` = customer subscribed to a term deposit.
-- `no` = customer did not subscribe.
+```text
+IDS Dataset
+  ↓
+Audit + Label Validation
+  ↓
+Train/Validation/Test Split
+  ↓
+Leakage-safe Preprocessing
+  ↓
+Imbalance Treatment
+  ↓
+Baseline / HPO Model
+  ↓
+Validation Metrics
+  ↓
+Final Test Evaluation
+  ↓
+SHAP Global + Local Explanation
+  ↓
+Explanation Stability
+  ↓
+Research Comparison
+```
 
-The positive class is the minority class and therefore receives explicit evaluation through precision, recall and F1 rather than relying only on accuracy.
+## 2. Imbalance Design
+The class distribution will be measured before modeling. Candidate treatments include class weighting and SMOTE-family methods where their assumptions are appropriate. Resampling must occur only inside training folds.
 
-## 3. Inputs
-- Public UCI Bank Marketing dataset
-- Target variable `y`
-- Model configuration
-- HPO strategy
-- Hyperparameter search space
-- Validation objective
-- Random seed
-- Experiment budget
+## 3. HPO Design
+Search strategies may include Grid Search, Random Search and Optuna/TPE. The primary objective must be selected before the main experiment. F1, recall or PR-AUC are candidates depending on the final task formulation. All strategies should receive comparable compute budgets.
 
-## 4. Outputs
-- Data-quality report
-- Class-distribution analysis
-- Baseline metrics
-- HPO trial history
-- Best hyperparameters
-- Optimized-model metrics
-- Runtime/trial efficiency measurements
-- SHAP global feature importance
-- SHAP local explanations
-- Explanation stability measurements
-- Baseline-vs-optimized comparison
-- Final research report
+## 4. Evaluation Design
+Report precision, recall, F1, balanced accuracy, ROC-AUC and PR-AUC. For multiclass IDS tasks, include macro/weighted metrics and per-attack-class results. Also report trial count and runtime.
 
-## 5. Preprocessing Design
-Categorical variables will be encoded through a reproducible pipeline. Numerical features will be handled according to the selected model requirements. Any imputation, encoding or scaling must be fitted only within training data/folds to prevent leakage.
+## 5. XAI Design
+SHAP will provide global feature importance and local explanations for representative predictions. Baseline and optimized models will be compared.
 
-## 6. HPO Design
-The initial comparison will consider:
-- Grid Search as a structured exhaustive baseline where feasible.
-- Random Search as a stochastic baseline.
-- TPE/Bayesian optimization through Optuna as the intelligent search method.
+## 6. Explanation Stability
+Stability will be evaluated by repeating explanations across predefined seeds, folds or controlled samples. Candidate measures include rank correlation and top-k feature overlap; the final measure will be fixed before the main experiment.
 
-Search spaces and trial budgets will be fixed before the final comparison. The primary objective will be selected from class-sensitive metrics, with secondary metrics reported for transparency.
+## 7. Error Handling
+Invalid rows, failed HPO trials, unsupported configurations and resource failures will be logged rather than silently discarded.
 
-## 7. Explainability Design
-SHAP will be used to provide:
-- Global mean absolute feature importance.
-- SHAP summary/beeswarm plots.
-- Local waterfall/force-style explanations where supported.
-- Comparison of feature rankings between baseline and optimized models.
-
-## 8. Explanation Stability Design
-Explanation stability will be treated as an experimental property rather than assumed. A documented repeated-sample/fold procedure will compare feature rankings or attribution distributions across runs. The selected stability measure will be finalized before the main experiment.
-
-## 9. Error Handling
-The system should provide clear errors for missing files, invalid target values, unsupported feature types, failed trials, invalid hyperparameters, insufficient class samples and unsupported XAI/model combinations.
-
-## 10. Design Constraints
-- Academic laptop CPU/RAM constraints.
-- Imbalanced target distribution.
-- Historical nature of the dataset.
-- Bounded HPO budget.
-- SHAP computational cost.
-- Explanations describe model behaviour and are not causal claims.
+## 8. Dataset Decision
+The dataset remains intentionally TBD until the literature review compares CIC-IDS2017, CSE-CIC-IDS2018, UNSW-NB15, TON_IoT and CIC-DDoS2019.
