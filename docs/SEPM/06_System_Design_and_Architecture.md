@@ -1,91 +1,56 @@
 # System Design and Architecture
 
-## 1. System Context
-The system is an experimental ML research workflow for binary prediction on the UCI Bank Marketing dataset. It compares baseline and optimized classifiers while measuring predictive performance, optimization efficiency and explainability.
+## 1. System Objective
+Design a reproducible research framework for optimizing imbalanced cybersecurity intrusion-detection models and evaluating their explanations.
 
-## 2. Architecture
+## 2. High-Level Architecture
 
 ```text
-+---------------------------+
-| UCI Bank Marketing Data   |
-| Target: y = yes / no      |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-| Data Validation            |
-| Schema / quality / target  |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-| Preprocessing Pipeline     |
-| Encoding / scaling / split |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-| Class Imbalance Analysis   |
-+-------------+-------------+
-              |
-        +-----+-----+
-        |           |
-        v           v
-+---------------+  +-------------------+
-| Baseline      |  | HPO Engine        |
-| Classifier    |  | Grid/Random/TPE   |
-+-------+-------+  +---------+---------+
-        |                    |
-        |          +---------v---------+
-        |          | Optimized Model   |
-        |          +---------+---------+
-        |                    |
-        +----------+---------+
-                   v
-        +-----------------------+
-        | Evaluation Engine    |
-        | F1 Recall Precision   |
-        | ROC-AUC PR-AUC etc.   |
-        +-----------+-----------+
-                    |
-          +---------+---------+
-          |                   |
-          v                   v
-+----------------+   +--------------------+
-| HPO Efficiency |   | SHAP XAI           |
-| trials / time  |   | global / local     |
-+--------+-------+   +---------+----------+
-         |                     |
-         +----------+----------+
-                    v
-        +-----------------------+
-        | Explanation Stability |
-        | ranking / consistency |
-        +-----------+-----------+
-                    v
-        +-----------------------+
-        | Reports & Research    |
-        | comparison / findings |
-        +-----------------------+
+Public Cybersecurity IDS Dataset
+            ↓
+     Data Validation/Audit
+            ↓
+ Leakage-safe Preprocessing
+            ↓
+     Imbalance Analysis
+            ↓
+       Baseline Models
+            ↓
+ ┌──────────┼─────────────┐
+ │          │             │
+Grid      Random      Optuna/TPE
+Search    Search      Optimization
+ └──────────┼─────────────┘
+            ↓
+   Optimized IDS Models
+            ↓
+ Performance + Efficiency
+            ↓
+      SHAP Explanations
+            ↓
+ Explanation Stability
+            ↓
+ Comparative Research Analysis
 ```
 
-## 3. Main Components
+## 3. Major Components
 
-1. **Dataset Manager:** loads and validates the public dataset.
-2. **Preprocessing Module:** performs leakage-safe feature preparation.
-3. **Imbalance Module:** measures class distribution and applies approved strategies only on training data when required.
-4. **Baseline Model Module:** trains reference models.
-5. **HPO Module:** executes defined search strategies and records trials.
-6. **Evaluation Module:** computes predictive and efficiency metrics.
-7. **XAI Module:** generates SHAP global and local explanations.
-8. **Stability Module:** compares explanation consistency across repeated samples/folds.
-9. **Reporting Module:** produces tables, plots and conclusions.
+1. **Dataset Layer:** selected public IDS dataset.
+2. **Validation Layer:** schema, labels, missing values, duplicates and leakage checks.
+3. **Preprocessing Layer:** numerical/categorical processing and train-fold-only transformations.
+4. **Imbalance Layer:** class distribution analysis and suitable mitigation strategies.
+5. **Model Layer:** baseline and optimized tree-based/tabular IDS classifiers.
+6. **Optimization Layer:** reproducible HPO strategies under a fixed budget.
+7. **Evaluation Layer:** F1, precision, recall, balanced accuracy, ROC-AUC, PR-AUC, confusion matrix and runtime.
+8. **XAI Layer:** SHAP global and local explanations.
+9. **Stability Layer:** ranking/top-k/association stability across seeds, folds or controlled samples.
+10. **Reporting Layer:** experiment logs, tables, figures and research conclusions.
 
 ## 4. Design Principles
-- Separation of concerns
-- Leakage prevention
-- Reproducibility
-- Modular experimentation
-- Controlled computational budget
-- Requirement traceability
-- Transparent reporting of positive and negative results
+
+- No test-set information during HPO.
+- Resampling only inside training folds where applicable.
+- Fixed random seeds and search budgets.
+- Modular experiment configuration.
+- Explicit recording of failed/invalid trials.
+- Security-conscious handling of data and credentials.
