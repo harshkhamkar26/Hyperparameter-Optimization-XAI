@@ -1,98 +1,43 @@
 # Project Proposal
 
-## 1. Project Title
-**Explainable Hyperparameter Optimization for Imbalanced Tabular Classification**
+## Title
+**An Explainable Hyperparameter Optimization Framework for Imbalanced Cybersecurity Intrusion Detection**
 
-## 2. Selected Application Problem
-The project will study **binary classification of Bank Marketing customers**. The target variable `y` indicates whether a customer subscribed to a term deposit (`yes`/`no`). The task has direct business relevance because a bank wants to identify customers who are more likely to convert while avoiding unnecessary marketing contacts.
+## 1. Background
+Intrusion Detection Systems use machine learning to identify malicious or anomalous network activity. Cybersecurity traffic datasets are frequently imbalanced, with some attack classes occurring much less often than normal traffic or dominant attack types. This creates a risk that conventional accuracy-focused models under-detect important minority attacks.
 
-## 3. Problem Statement
-Machine-learning models can be sensitive to hyperparameter choices. Manual tuning is slow and may miss strong configurations. At the same time, the positive class in marketing-response prediction is substantially smaller than the negative class, making raw accuracy an inadequate optimization objective. High-performing models may also be difficult to interpret.
+## 2. Problem Statement
+Model performance depends strongly on hyperparameters and the treatment of imbalanced classes. Different optimization strategies may produce different performance, runtime and decision behaviour. Furthermore, an accurate IDS model is difficult to trust if its predictions cannot be explained or if explanations are unstable. This project proposes a reproducible framework to study these factors together.
 
-## 4. Proposed Solution
-Develop a reproducible experimental framework that compares baseline and hyperparameter-optimized classifiers on the UCI Bank Marketing dataset. The study will compare multiple search strategies, evaluate predictive performance and optimization cost, and use SHAP to examine how model explanations change after optimization.
+## 3. Objectives
+1. Select and justify a public cybersecurity intrusion dataset.
+2. Establish leakage-safe baseline IDS models.
+3. Analyze class imbalance and compare suitable mitigation strategies.
+4. Compare default models with HPO-optimized models.
+5. Compare Grid Search, Random Search and Optuna/TPE where computationally feasible.
+6. Evaluate class-sensitive IDS metrics and computational efficiency.
+7. Generate SHAP global and local explanations.
+8. Quantify explanation stability across repeated experiments.
+9. Identify the trade-off between predictive performance, efficiency and explanation stability.
 
-## 5. Research Gap
-Existing work has already studied Bank Marketing using hyperparameter tuning, ensemble models, sampling methods and SHAP. A 2026 PLOS ONE study, for example, evaluates hyperparameter tuning, sampling, computational cost and SHAP-based explainability on the dataset. Therefore, this project will focus on a narrower research question: **how optimization strategy and class-imbalance treatment affect the trade-off between predictive performance, computational efficiency and explanation stability.**
+## 4. Research Questions
+- RQ1: Which HPO strategy provides the strongest IDS performance under a fixed computational budget?
+- RQ2: How does imbalance treatment affect minority-attack detection?
+- RQ3: Does HPO improve performance consistently across attack classes?
+- RQ4: How does optimization affect SHAP feature importance and local explanations?
+- RQ5: Are explanations stable across seeds/folds and model configurations?
+- RQ6: Is the best-performing IDS model also the most computationally efficient and explanation-stable?
 
-## 6. Research Questions
-1. Which HPO strategy gives the strongest validation performance for the selected classification models?
-2. How much improvement does optimization provide over default/reference hyperparameters?
-3. Does optimizing for F1/recall-oriented objectives change model behaviour compared with optimizing for accuracy or ROC-AUC?
-4. How does class-imbalance treatment affect model performance and SHAP explanations?
-5. Does hyperparameter optimization materially change global feature rankings or local explanations?
-6. Which approach provides the best practical trade-off between predictive quality, computational cost and explanation stability?
+## 5. Proposed Methodology
+**Dataset → Validation → Leakage-safe preprocessing → Imbalance analysis → Baseline → HPO + imbalance treatments → Evaluation → SHAP → Stability analysis → Comparative study → Conclusions**
 
-## 7. Objectives
-- Establish reproducible baseline models.
-- Compare Grid Search, Random Search and TPE/Bayesian optimization where feasible.
-- Evaluate class-sensitive metrics.
-- Measure optimization time and trial efficiency.
-- Generate global and local SHAP explanations.
-- Compare explanation stability before and after optimization.
-- Produce a transparent research report rather than only a high-accuracy model.
+Candidate datasets: CIC-IDS2017, CSE-CIC-IDS2018, UNSW-NB15, TON_IoT and CIC-DDoS2019. The final dataset will be frozen only after literature-based comparison.
 
-## 8. High-Level Modules
-1. Dataset Management
-2. Data Validation and Preprocessing
-3. Class-Imbalance Analysis
-4. Baseline Model Training
-5. Hyperparameter Search
-6. Model Evaluation
-7. SHAP Explainability
-8. Explanation Stability Analysis
-9. Experiment Tracking and Reporting
+## 6. Expected Contribution
+The contribution is an empirical and reproducible framework, not a new ML algorithm. It will jointly compare HPO strategy, imbalance handling, IDS performance, computational efficiency and explanation stability.
 
-## 9. Proposed Models
-The initial study will prioritize models that work well on tabular data, such as Random Forest and gradient-boosting models. The final model set will be fixed after a small baseline experiment and computational feasibility assessment.
+## 7. Boundaries
+The project focuses on supervised tabular/network-flow intrusion detection. It does not claim real-time SOC deployment, zero-day detection or causal interpretation of SHAP values unless separately validated.
 
-## 10. Proposed Tools
-- Python
-- Pandas / NumPy
-- Scikit-learn
-- Optuna
-- SHAP
-- imbalanced-learn where required
-- Matplotlib / Seaborn for visualization
-- Jupyter Notebook
-- GitHub for version control
-
-## 11. Evaluation Strategy
-Primary metrics:
-- F1-score
-- Recall
-- Precision
-- ROC-AUC
-- PR-AUC where appropriate
-- Accuracy
-- Confusion matrix
-
-Efficiency metrics:
-- Number of trials
-- Optimization runtime
-- Training runtime
-- Best objective value per computational budget
-
-Explainability metrics/analysis:
-- Mean absolute SHAP importance
-- Top-k feature overlap between models
-- Rank correlation of feature importance
-- Explanation consistency across repeated samples/folds
-
-## 12. Expected Contribution
-The expected contribution is an experimental framework for comparing HPO strategies under an imbalanced tabular classification setting while treating explainability and computational cost as first-class evaluation dimensions. The project will explicitly report negative or statistically insignificant improvements instead of assuming that optimization always improves a model.
-
-## 13. Deliverables
-- SRS
-- Project Proposal
-- Feasibility Study
-- Project Plan and schedule
-- Risk Register
-- System Design and Architecture
-- UML diagrams
-- Test Plan and Test Cases
-- Requirements Traceability Matrix
-- Project Management document
-- Detailed Design Description
-- Literature Review and Research Gap document
-- Final experimental report and presentation
+## 8. Deliverables
+SEPM documentation, literature review, dataset justification, experimental protocol, reproducible experiments, performance comparison, SHAP analysis, explanation-stability analysis and research paper/report.
