@@ -1,33 +1,23 @@
 # Requirements Traceability Matrix
 
-| Requirement | Design Component | Test Case(s) | Status |
-|---|---|---|---|
-| FR-01 Dataset input | Dataset Manager | TC01, TC02 | Planned |
-| FR-02 Data validation | Dataset Manager | TC03-TC05 | Planned |
-| FR-03 Preprocessing | Preprocessor | TC05, TC07 | Planned |
-| FR-04 Stratified split | Preprocessor | TC06 | Planned |
-| FR-05 Baseline model | Model Manager | TC08 | Planned |
-| FR-06 Search spaces | HPO Engine | TC09 | Planned |
-| FR-07 Multiple HPO strategies | HPO Engine | TC09 | Planned |
-| FR-08 Best configuration | HPO Engine | TC10 | Planned |
-| FR-09 Model evaluation | Evaluation Engine | TC11, TC12 | Planned |
-| FR-10 Experiment recording | Reporting / HPO | TC13, TC19 | Planned |
-| FR-11 SHAP explanations | XAI Module | TC14, TC15 | Planned |
-| FR-12 Explanation comparison | XAI / Stability | TC16 | Planned |
-| FR-13 Explanation stability | Stability Module | TC17 | Planned |
-| FR-14 Visualizations/reports | Reporting Module | TC19 | Planned |
-| FR-15 Reproducibility metadata | Experiment Manager | TC18 | Planned |
-| FR-16 Documentation | Documentation / QA | TC20 | Planned |
-
-## Research Objective Traceability
-
-| Research Objective | Evidence | Test/Validation |
+| Requirement | Design Component | Test |
 |---|---|---|
-| Compare HPO strategies | Best objective + runtime + trial count | TC09, TC13 |
-| Measure improvement over baseline | Metric comparison | TC11, TC12 |
-| Handle class imbalance responsibly | Class distribution + class-sensitive metrics | TC04, TC11 |
-| Study explanation changes | SHAP rankings/distributions | TC14-TC16 |
-| Study explanation stability | Repeated explanation analysis | TC17, TC18 |
-| Ensure reproducibility | Seeds + experiment metadata | TC18 |
+| FR-01 Dataset loading | Dataset Manager | TC01 |
+| FR-02 Data validation | Validation Layer | TC02-TC04 |
+| FR-03 Leakage-safe preprocessing | Preprocessing Layer | TC07 |
+| FR-04 Reproducible splitting | Validation Layer | TC06 |
+| FR-05 Imbalance analysis | Imbalance Layer | TC05 |
+| FR-06 Baseline IDS | Model Layer | TC08 |
+| FR-07 HPO search spaces | HPO Layer | TC11-TC13 |
+| FR-08 HPO comparison | HPO Layer | TC11-TC14 |
+| FR-09 Imbalance treatments | Imbalance Layer | TC09-TC10 |
+| FR-10 Performance evaluation | Evaluation Layer | TC15 |
+| FR-11 Trial logging | Experiment Logger | TC11-TC14 |
+| FR-12 SHAP explanations | XAI Layer | TC16-TC17 |
+| FR-13 Explanation comparison | XAI Layer | TC16-TC17 |
+| FR-14 Explanation stability | Stability Layer | TC18 |
+| FR-15 Reproducibility | Experiment Logger | TC19 |
+| FR-16 Reporting | Reporting Layer | TC20 |
 
-This matrix should be updated from **Planned** to **Implemented/Tested** as implementation progresses.
+## Traceability Rule
+Every research conclusion must be traceable to a defined experiment, metric, configuration and test result.
