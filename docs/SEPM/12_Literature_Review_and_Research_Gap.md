@@ -1,64 +1,66 @@
 # Literature Review and Research Gap
 
-## 1. Purpose
-This document records the literature review used to justify the selected dataset, binary classification problem and research direction. It is intended to prevent the project from presenting an already-published combination as a new contribution.
+## 1. Research Domain
+The project focuses on machine-learning-based **cybersecurity intrusion detection**, with specific emphasis on class imbalance, hyperparameter optimization and explainability.
 
-## 2. Selected Dataset and Classification Task
-The project uses the UCI Bank Marketing dataset. The binary target `y` represents whether a customer subscribed to a term deposit (`yes`/`no`). This is a practically meaningful classification problem because marketing resources are limited and the cost of contacting customers who are unlikely to convert differs from the value of reaching likely subscribers.
+## 2. Key Literature Directions
 
-## 3. Relevant Literature
+### A. Benchmark IDS datasets
+CIC-IDS2017 provides labeled benign and attack network flows and is widely used for IDS evaluation. The official dataset documentation describes multiple attack scenarios and flow-level CSV data. citeturn0search0
 
-### Paper 1 — Nasir et al. (2026)
-**Marketing analytics in banking 4.0: A two-stage explainable AI framework for high-accuracy and well-calibrated predictions.** PLOS ONE, 21(5), e0348767. DOI: 10.1371/journal.pone.0348767.
+UNSW-NB15 contains normal traffic and nine attack families, with 49 engineered features and more than 2.5 million records in the full dataset. UNSW provides predefined training and testing files as well. citeturn0search1
 
-The paper uses the Bank Marketing dataset and studies ensemble/deep-learning models, class-imbalance sampling, hyperparameter tuning, computational cost and SHAP explanations. It evaluates discrimination, calibration, computational complexity and explainability. The authors explicitly identify future work involving many-objective optimization, fairness and explanation-stability measures.
+### B. Explainable IDS
+Recent work has used SHAP for explainable intrusion detection. A 2025 IEEE conference paper proposed an explainable IIoT intrusion-detection methodology using SHAP and LIME on WUSTL-IIoT-2021, demonstrating the growing use of XAI for security models. citeturn0search14
 
-**Relevance:** This is the closest recent prior work and establishes that simple “Bank Marketing + HPO + SHAP” is not a sufficient novelty claim.
+A recent IEEE conference publication also combines LightGBM, Optuna-based hyperparameter optimization and SHAP on CICIDS2017, showing that **HPO + SHAP + IDS is already an active combination**. Therefore, the project must not claim novelty from this combination alone. citeturn0search5
 
-### Paper 2 — Recent Bank Marketing Explainable Ensemble Work (2026)
-A 2026 Scientific Reports study, **Using ensemble learning and explainable AI to predict bank marketing customer subscription**, investigates class imbalance/distribution shifts using CatBoost ensemble learning and hierarchical SHAP explanations.
+### C. Imbalance and evaluation
+Recent IDS studies continue to emphasize skewed attack distributions and the need for metrics beyond accuracy. A 2026 comparative study using UNSW-NB15 and CIC-IDS2017 reports substantial benign/attack imbalance and evaluates precision, recall, F1, MCC and AUROC. citeturn0search7
 
-**Relevance:** It reinforces the need to differentiate the project through its HPO-strategy comparison and explanation-stability analysis rather than only predictive accuracy.
+### D. Cross-dataset and robustness considerations
+Recent work evaluates IDS models across UNSW-NB15 and CIC-IDS2017 rather than relying on a single benchmark, reinforcing the importance of dataset-specific artifacts and generalization. citeturn0search2turn0search10
 
-### Paper 3 — Risk-Sensitive Machine Learning for Financial Decision Modeling Under Imbalanced Data (2026)
-This study evaluates Bank Telemarketing/Bank Marketing-style prediction using risk-sensitive evaluation, calibration and multi-level SHAP analysis, including global, interaction and local explanations.
+## 3. Research Gap
+The literature establishes that:
+- ML-based IDS is well studied.
+- Class imbalance is a significant IDS evaluation issue.
+- HPO is increasingly used to improve IDS models.
+- SHAP/LIME are already used for explainable IDS.
+- HPO + SHAP has already appeared in recent IDS research.
 
-**Relevance:** It supports the decision to treat imbalance, calibration/risk and explainability as integrated evaluation dimensions.
+Therefore, the project will **not** claim novelty from using Optuna, SHAP, SMOTE or a standard IDS dataset individually.
 
-## 4. Research Gap
-The literature demonstrates that:
-- Hyperparameter tuning is already used on Bank Marketing.
-- SHAP is already used to explain Bank Marketing models.
-- Class-imbalance treatment is already an important research direction.
-- Computational cost and calibration are increasingly being evaluated alongside predictive metrics.
+### Proposed Gap
+The project will investigate the controlled interaction of:
 
-Therefore, the project will **not** claim novelty from using Optuna, SHAP or Bank Marketing independently.
+**HPO strategy × imbalance treatment × IDS performance × computational efficiency × explanation stability**
 
-The proposed research gap is a controlled, reproducible comparison of **HPO strategy × class-imbalance treatment × predictive performance × computational efficiency × explanation stability**.
+The key additional dimension is quantitative **explanation stability** across repeated seeds/folds/samples, studied alongside predictive and computational performance.
 
-## 5. Proposed Research Questions
-1. Which HPO strategy provides the strongest positive-class performance under a fixed computational budget?
-2. How much improvement does HPO provide over default/reference configurations?
-3. How does the optimization objective (for example F1 versus ROC-AUC) affect the selected model and positive-class behaviour?
-4. How does imbalance treatment affect both predictive performance and explanations?
-5. How stable are global and local SHAP explanations before and after optimization?
-6. Is the best predictive model also the best model when computational efficiency and explanation stability are considered?
+## 4. Research Questions
+1. Which HPO strategy performs best under a fixed computational budget for imbalanced IDS?
+2. How does imbalance treatment affect minority-attack recall and PR-AUC?
+3. Does HPO consistently improve performance across attack classes?
+4. How does HPO change SHAP feature rankings and local explanations?
+5. How stable are explanations across repeated seeds/folds?
+6. Is the best predictive model also the most computationally efficient and explanation-stable?
 
-## 6. Expected Contribution
-The expected contribution is an empirical framework and comparison rather than a claim of a new ML algorithm. The project will provide:
-- Reproducible HPO experiments.
-- Fair baseline-vs-optimized comparisons.
-- Class-sensitive evaluation.
-- Optimization-efficiency measurements.
-- SHAP-based global/local analysis.
-- Quantitative explanation-stability analysis.
-- Transparent reporting of limitations and negative findings.
+## 5. Dataset Selection Criteria
+The final dataset will be selected using:
+- class imbalance severity
+- number and diversity of attack classes
+- dataset size and computational feasibility
+- feature quality
+- literature usage
+- reproducibility and availability
+- duplicate/leakage risk
+- suitability for tree-based ML and SHAP
 
-## 7. Important Methodological Rule
-The final test set must remain untouched during HPO. Preprocessing and resampling must be performed inside training folds where applicable. The HPO budget, evaluation objective and stability procedure should be fixed before the main experiment to reduce researcher degrees of freedom.
+Candidates: **CIC-IDS2017, CSE-CIC-IDS2018, UNSW-NB15, TON_IoT and CIC-DDoS2019**.
 
-## 8. References
-1. Nasir, F., Ali Ahmed, A., Yevseyeva, I., & Kiraz, M. S. (2026). *Marketing analytics in banking 4.0: A two-stage explainable AI framework for high-accuracy and well-calibrated predictions*. PLOS ONE, 21(5), e0348767. DOI: 10.1371/journal.pone.0348767.
-2. *Using ensemble learning and explainable AI to predict bank marketing customer subscription*. Scientific Reports (2026). DOI: 10.1038/s41598-026-58149-y.
-3. *Risk-Sensitive Machine Learning for Financial Decision Modeling Under Imbalanced Data: Evidence from Bank Telemarketing*. Entropy (2026), 28(3), 354.
-4. UCI Machine Learning Repository. *Bank Marketing* dataset.
+## 6. Methodological Controls
+The test set must remain untouched during HPO. Preprocessing and resampling must occur inside training folds where applicable. Search budgets, seeds, primary objective and explanation-stability procedure will be fixed before the main experiment.
+
+## 7. Expected Contribution
+An empirical, reproducible framework that demonstrates how optimization and imbalance handling influence not only IDS predictive performance but also computational cost and the stability of explanations.
