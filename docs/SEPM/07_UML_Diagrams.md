@@ -1,18 +1,19 @@
 # UML Diagrams
 
 ## System
-**An Explainable Hyperparameter Optimization Framework for Imbalanced Cybersecurity Intrusion Detection**
+**Explainable Hyperparameter Optimization for Imbalanced Tabular Classification — Bank Marketing**
 
 ## 1. Use Case Diagram
 
 ```mermaid
 flowchart LR
-    Analyst[Security / ML Analyst]
-    System[IDS Research Framework]
-    Analyst -->|Select dataset| System
+    Analyst[Marketing / ML Analyst]
+    System[Bank Marketing Research Framework]
+    Analyst -->|Load UCI dataset| System
     Analyst -->|Configure experiments| System
     Analyst -->|Run baseline| System
     Analyst -->|Run HPO| System
+    Analyst -->|Apply imbalance strategy| System
     Analyst -->|Evaluate models| System
     Analyst -->|Generate SHAP| System
     Analyst -->|Run stability analysis| System
@@ -23,17 +24,18 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-A[Load IDS Dataset] --> B[Validate and Audit]
-B --> C[Split Data]
-C --> D[Preprocess]
-D --> E[Analyze Imbalance]
-E --> F[Train Baseline]
-F --> G[Apply HPO / Imbalance Strategy]
-G --> H[Evaluate]
-H --> I[Generate SHAP]
-I --> J[Measure Explanation Stability]
-J --> K[Compare Results]
-K --> L[Research Report]
+A[Load Bank Marketing Dataset] --> B[Validate and Audit]
+B --> C[Apply Prediction-time Feature Policy]
+C --> D[Split Data]
+D --> E[Preprocess]
+E --> F[Analyze Imbalance]
+F --> G[Train Baseline]
+G --> H[Apply HPO / Imbalance Strategy]
+H --> I[Evaluate]
+I --> J[Generate SHAP]
+J --> K[Measure Explanation Stability]
+K --> L[Compare Results]
+L --> M[Research Report]
 ```
 
 ## 3. Sequence Diagram
@@ -46,7 +48,7 @@ participant M as Model Module
 participant O as HPO Module
 participant X as XAI Module
 participant R as Report Module
-A->>D: Load and validate dataset
+A->>D: Load and validate Bank Marketing data
 D->>M: Prepared training data
 M->>O: Baseline/model configuration
 O->>M: Trial parameters
@@ -78,9 +80,7 @@ R->>A: Comparative report
 Student Workstation
  ├── Python/Jupyter
  ├── ML + HPO Libraries
- ├── Dataset Storage
+ ├── UCI Bank Marketing Dataset
  ├── Experiment Logs
  └── GitHub Documentation
 ```
-
-Dataset-specific labels and model names will be finalized after dataset selection.
