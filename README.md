@@ -1,37 +1,42 @@
-# An Explainable Hyperparameter Optimization Framework for Imbalanced Cybersecurity Intrusion Detection
+# Explainable Hyperparameter Optimization for Imbalanced Tabular Classification — Bank Marketing
 
-This repository contains the **Software Engineering and Project Management (SEPM) documentation** for an academic research project on cybersecurity intrusion detection, hyperparameter optimization, class imbalance and Explainable AI.
+This repository contains the **Software Engineering and Project Management (SEPM) documentation** for an academic research project on hyperparameter optimization, class imbalance and Explainable AI in bank marketing analytics.
 
-## Corrected Research Topic
+## Current Research Scope
 
-**An Explainable Hyperparameter Optimization Framework for Imbalanced Cybersecurity Intrusion Detection**
+**Dataset:** UCI Bank Marketing Dataset  
+**Task:** Binary classification of term-deposit subscription (`yes` / `no`)  
+**Domain:** Marketing / Banking Marketing Analytics  
+**Core theme:** Hyperparameter optimization + imbalanced learning + Explainable AI  
+**Research focus:** Predictive performance, optimization efficiency, class-imbalance handling and explanation stability
 
-## Research Scope
+The project does **not** claim novelty merely from applying HPO and SHAP to Bank Marketing. Recent literature already covers that combination. The intended contribution is a controlled, reproducible comparison of:
 
-- **Domain:** Cybersecurity / Intrusion Detection Systems (IDS)
-- **Task:** Intrusion/attack detection using supervised machine learning
-- **Core problem:** Class imbalance in cybersecurity traffic, especially minority attack classes
-- **Optimization:** Grid Search, Random Search and Bayesian/TPE-based optimization such as Optuna, subject to compute budget
-- **Explainability:** SHAP-based global and local explanations
-- **Research focus:** Predictive performance, imbalance handling, optimization efficiency and explanation stability
+**HPO strategy × imbalance treatment × predictive performance × computational efficiency × explanation stability**
 
-The dataset will be selected after a focused literature and dataset comparison. Candidate datasets include CIC-IDS2017, CSE-CIC-IDS2018, UNSW-NB15, TON_IoT and CIC-DDoS2019. The final choice will be justified using class imbalance, attack coverage, size, reproducibility, literature support, leakage risk and computational feasibility.
+## Central Research Question
 
-## Research Gap Positioning
+How can hyperparameter optimization be systematically combined with imbalance handling and explainable AI to improve bank-marketing classification performance while maintaining computational efficiency and stable, trustworthy explanations?
 
-The project will **not** claim novelty merely from applying HPO or SHAP to an IDS dataset. The intended contribution is a controlled, reproducible evaluation of:
+## Proposed Research Workflow
 
-**HPO strategy × imbalance treatment × IDS performance × computational efficiency × explanation stability**
+**UCI Bank Marketing → Validation → Leakage-safe preprocessing → Imbalance analysis → Baseline → HPO strategies → Evaluation → SHAP → Explanation stability → Comparative analysis → Research findings**
 
-A central research question is whether the model with the best predictive performance also provides the most stable and trustworthy explanations.
+## Planned Models and Methods
 
-## Proposed Workflow
+- Random Forest
+- XGBoost
+- CatBoost where computationally feasible
+- Grid Search
+- Random Search
+- Optuna/TPE
+- Class weighting
+- SMOTE within training folds where appropriate
+- SHAP global and local explanations
 
-**Cybersecurity Dataset → Data Validation → Leakage-safe Preprocessing → Imbalance Analysis → Baseline IDS Models → HPO Strategies → Evaluation → SHAP Explanations → Explanation Stability → Comparative Analysis → Research Findings**
+## Evaluation
 
-## Planned Technology Stack
-
-Python, Pandas, NumPy, Scikit-learn, XGBoost/other suitable tree models, Optuna, SHAP, imbalanced-learn, Matplotlib and Jupyter Notebook.
+Accuracy, Precision, Recall, F1, ROC-AUC, PR-AUC, Balanced Accuracy, confusion matrix, HPO trial count, runtime and explanation-stability measures will be considered. The test set will remain untouched during HPO.
 
 ## SEPM Documents
 
@@ -53,4 +58,4 @@ All project documentation is stored under `docs/SEPM/`.
 
 ## Version Control
 
-GitHub is used to track requirements, design decisions, UML, testing and research-document changes. Implementation will begin only after the research scope, dataset and experimental protocol are approved.
+GitHub is used to track requirements, design decisions, UML, testing and research-document changes. Implementation will be added after the SEPM scope and experimental protocol are approved.
