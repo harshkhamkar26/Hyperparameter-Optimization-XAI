@@ -57,7 +57,23 @@
 
 21. imbalanced-learn. *Tools for classification with imbalanced datasets*.
 
-## 7. Research Positioning
+## 7. Domain and Model Positioning
+
+**Domain:** Marketing / Banking Marketing Analytics.
+
+**Dataset:** UCI Bank Marketing Dataset.
+
+**Task:** Binary classification of term-deposit subscription (`yes`/`no`).
+
+**Core models:** Random Forest, XGBoost and CatBoost.
+
+**HPO methods:** Grid Search, Random Search and Optuna/TPE, subject to a fixed computational budget.
+
+**Imbalance treatments:** No treatment, class weighting and SMOTE where technically valid.
+
+**XAI:** SHAP global and local explanations.
+
+## 8. Research Positioning
 
 Recent Bank Marketing literature already demonstrates class balancing, hyperparameter tuning, Optuna/TPE, CatBoost/XGBoost, SHAP and computational evaluation. Therefore, the proposed project must not claim novelty from any one of these components alone.
 
