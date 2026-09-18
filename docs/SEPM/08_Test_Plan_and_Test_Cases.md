@@ -13,7 +13,8 @@ Verify correctness, reproducibility, leakage safety and research validity of the
 | TC06 | Split train/validation/test | Stratified splits follow protocol |
 | TC07 | Check prediction-time feature policy | Features unavailable at prediction time are excluded/controlled |
 | TC08 | Check preprocessing leakage | Test information is not used in fitting |
-| TC09 | Train baseline model | Baseline metrics are produced |
+| TC09 | Train Random Forest, XGBoost and CatBoost baselines | Baseline metrics are produced for each model |
+| TC09A | Validate model configuration | Only the predefined core model set is used: Random Forest, XGBoost, CatBoost |
 | TC10 | Apply class weighting | Model trains and results are logged |
 | TC11 | Apply SMOTE/valid resampling | Resampling occurs only on training folds |
 | TC12 | Run Grid Search | Trials and best parameters are recorded |
