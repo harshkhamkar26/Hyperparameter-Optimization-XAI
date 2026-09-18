@@ -42,7 +42,12 @@ Search    Search      Optimization
 3. **Preprocessing Layer:** numerical/categorical processing and train-fold-only transformations.
 4. **Imbalance Layer:** class distribution analysis, class weighting and SMOTE where valid.
 5. **Model Layer:** baseline and optimized tree-based/tabular classifiers.
-6. **Optimization Layer:** reproducible HPO strategies under a fixed budget.
+6. **Model Layer:** Random Forest, XGBoost and CatBoost are the core tree-based/tabular classifiers.
+7. **Optimization Layer:** reproducible HPO strategies under a fixed budget.
+8. **Evaluation Layer:** precision, recall, F1, balanced accuracy, ROC-AUC, PR-AUC, confusion matrix and runtime.
+9. **XAI Layer:** SHAP global and local explanations.
+10. **Stability Layer:** ranking/top-k/association stability across seeds, folds or controlled samples.
+11. **Reporting Layer:** experiment logs, tables, figures and research conclusions.
 7. **Evaluation Layer:** precision, recall, F1, balanced accuracy, ROC-AUC, PR-AUC, confusion matrix and runtime.
 8. **XAI Layer:** SHAP global and local explanations.
 9. **Stability Layer:** ranking/top-k/association stability across seeds, folds or controlled samples.
