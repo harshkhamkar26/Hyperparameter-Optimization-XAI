@@ -58,7 +58,26 @@ X->>R: SHAP + stability results
 R->>A: Comparative report
 ```
 
-## 4. Component View
+## 4. Model Scope
+
+```text
+Marketing / Banking Marketing Analytics
+              ↓
+       UCI Bank Marketing
+              ↓
+   ┌──────────┼──────────┐
+   │          │          │
+Random Forest XGBoost  CatBoost
+   └──────────┼──────────┘
+              ↓
+       HPO + Imbalance
+              ↓
+          SHAP / XAI
+              ↓
+     Explanation Stability
+```
+
+## 5. Component View
 
 ```text
 [Dataset Manager] → [Preprocessing] → [Imbalance Handler]
