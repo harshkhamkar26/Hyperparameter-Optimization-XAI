@@ -14,7 +14,7 @@
 |---|---|
 | Literature | Bank Marketing, imbalance, HPO and XAI review |
 | Dataset | UCI dataset validation, feature timing and preprocessing |
-| ML | Baselines and optimized models |
+| ML | Random Forest, XGBoost and CatBoost baselines and optimized models |
 | HPO | Search spaces, objectives, budgets and trial logging |
 | XAI | SHAP explanations and stability |
 | Evaluation | Metrics, statistical/repeated-seed analysis |
