@@ -28,7 +28,10 @@ Explanation Stability
 Research Comparison
 ```
 
-## 2. Imbalance Design
+## 2. Domain and Model Design
+The application domain is **Marketing / Banking Marketing Analytics**, using the **UCI Bank Marketing Dataset** to predict term-deposit subscription (`yes`/`no`). The core classifiers are **Random Forest, XGBoost and CatBoost**. These are evaluated first as default/reference models and then under controlled hyperparameter optimization.
+
+## 3. Imbalance Design
 The `yes`/`no` target distribution will be measured before modeling. Candidate treatments include class weighting and SMOTE where assumptions are appropriate. Resampling must occur only inside training folds.
 
 ## 3. HPO Design
