@@ -13,7 +13,8 @@
 | Explanation instability | High | Measure stability across seeds/folds/samples |
 | SMOTE changes data distribution | Medium | Apply only inside training folds and compare against class weighting |
 | Library incompatibility | Medium | Pin versions and record environment |
-| Weak research gap | High | Domain-specific literature review before implementation |
+| Weak research gap | High | Domain-specific literature review before implementation; do not claim novelty from simply combining Bank Marketing, HPO, SMOTE or SHAP |
+| Model-selection bias | High | Predefine Random Forest, XGBoost and CatBoost as the core comparison set and do not assume a winner before evaluation |
 | Reproducibility failure | High | Fixed seeds, configs, splits, search spaces and experiment logs |
 | Documentation drift | Medium | Update SEPM artifacts whenever methodology changes |
 | Data/privacy issue | Critical | Use the public benchmark and never commit private customer data or secrets |
