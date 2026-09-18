@@ -7,7 +7,7 @@
 | FR-03 Leakage-safe preprocessing | Preprocessing Layer | TC08 |
 | FR-04 Reproducible splitting | Validation Layer | TC06 |
 | FR-05 Imbalance analysis | Imbalance Layer | TC05 |
-| FR-06 Baseline classifier | Model Layer | TC09 |
+| FR-06 Baseline classifiers: Random Forest, XGBoost, CatBoost | Model Layer | TC09, TC09A |
 | FR-07 HPO search spaces | HPO Layer | TC12-TC14 |
 | FR-08 HPO comparison | HPO Layer | TC12-TC15 |
 | FR-09 Imbalance treatments | Imbalance Layer | TC10-TC11 |
