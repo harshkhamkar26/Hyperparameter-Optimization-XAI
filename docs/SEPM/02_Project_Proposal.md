@@ -31,7 +31,7 @@ Model performance depends strongly on hyperparameters and the treatment of imbal
 ## 5. Proposed Methodology
 **UCI Bank Marketing → Validation → Leakage-safe preprocessing → Imbalance analysis → Baseline → HPO + imbalance treatments → Evaluation → SHAP → Stability analysis → Comparative study → Conclusions**
 
-The controlled experiment matrix will compare default versus optimized models under no imbalance treatment, class weighting and SMOTE where technically valid. Tree-based models such as Random Forest, XGBoost and CatBoost will be considered.
+The core model set is **Random Forest, XGBoost and CatBoost** because they are strong, practical choices for tabular data and support efficient SHAP-based analysis. The controlled experiment matrix will compare default versus HPO-optimized configurations under no imbalance treatment, class weighting and SMOTE where technically valid. Grid Search, Random Search and Optuna/TPE will be compared where computationally feasible. XGBoost, Random Forest and CatBoost are model families in the experiment; no single model is assumed to be best before testing.
 
 ## 6. Expected Contribution
 The contribution is an empirical and reproducible framework, not a new ML algorithm. The study will jointly compare **HPO strategy × imbalance treatment × predictive performance × computational efficiency × explanation stability**. The research will explicitly test whether improvements in predictive metrics also correspond to stable explanations.
