@@ -1,7 +1,7 @@
 # Feasibility Study
 
 ## 1. Technical Feasibility
-The project is technically feasible using Python, Pandas, NumPy, Scikit-learn, Optuna, SHAP and imbalanced-learn. The UCI Bank Marketing dataset is a manageable tabular benchmark suitable for academic CPU/RAM resources and controlled HPO experiments.
+The project is technically feasible using Python, Pandas, NumPy, Scikit-learn, Optuna, SHAP and imbalanced-learn. The core model set is **Random Forest, XGBoost and CatBoost**, selected for tabular classification and compatibility with SHAP-based interpretation. The UCI Bank Marketing dataset is a manageable tabular benchmark suitable for academic CPU/RAM resources and controlled HPO experiments.
 
 ## 2. Research Feasibility
 The topic is supported by established Bank Marketing, imbalanced learning, hyperparameter optimization and explainable AI research. Recent studies already combine HPO, class balancing and SHAP on this dataset. Therefore, the defensible research gap is the controlled joint comparison of optimization strategy, imbalance treatment, predictive performance, computational efficiency and explanation stability.
