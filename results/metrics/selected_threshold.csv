@@ -1,0 +1,2 @@
+Selection_Method,Selected_Threshold,Training_OOF_F1,Training_OOF_Precision,Training_OOF_Recall,Training_OOF_Balanced_Accuracy
+Maximize F1 using training OOF predictions,0.22,0.5763249761980324,0.5216392186901571,0.6438194280311983,0.7828014696595231

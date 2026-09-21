@@ -1,0 +1,2 @@
+age,job,marital,education,default,balance,housing,loan,contact,day,month,duration,campaign,pdays,previous,poutcome,Actual_Class,Predicted_Class,Predicted_Probability,Threshold
+26,management,single,tertiary,no,2725,no,no,cellular,28,jan,267,1,-1,0,unknown,0,0,0.4264985056933915,0.5

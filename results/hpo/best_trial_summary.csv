@@ -1,0 +1,4 @@
+Model,Best_CV_F1,Best_Parameters
+Logistic Regression,0.5477052926799951,"{'C': 2.324230654314927, 'class_weight': 'balanced'}"
+Decision Tree,0.5229095429364335,"{'max_depth': 20, 'min_samples_split': 12, 'min_samples_leaf': 4, 'max_features': None, 'criterion': 'entropy', 'class_weight': 'balanced'}"
+Random Forest,0.6103991414857853,"{'n_estimators': 400, 'max_depth': 30, 'min_samples_split': 12, 'min_samples_leaf': 5, 'max_features': None, 'class_weight': 'balanced'}"

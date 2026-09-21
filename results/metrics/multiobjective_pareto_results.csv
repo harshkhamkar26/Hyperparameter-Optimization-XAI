@@ -1,0 +1,11 @@
+Model,Trial,F1,PR_AUC,Parameters
+Logistic Regression,2,0.4500711169487854,0.5497277380216339,"{'C': 6.042817315058874, 'class_weight': None}"
+Logistic Regression,6,0.5476621031929716,0.5439855989259463,"{'C': 2.444972144868084, 'class_weight': 'balanced'}"
+Logistic Regression,7,0.5475171643821976,0.5440017977567916,"{'C': 5.847534732674548, 'class_weight': 'balanced'}"
+Logistic Regression,13,0.4501416593276672,0.5497060257446545,"{'C': 9.870614746380534, 'class_weight': None}"
+Decision Tree,3,0.4822255566323677,0.493445733584232,"{'max_depth': 6, 'min_samples_split': 12, 'min_samples_leaf': 5, 'max_features': None, 'criterion': 'log_loss', 'class_weight': None}"
+Decision Tree,12,0.4784439400898251,0.5129820821154242,"{'max_depth': 12, 'min_samples_split': 17, 'min_samples_leaf': 9, 'max_features': None, 'criterion': 'log_loss', 'class_weight': None}"
+Decision Tree,18,0.5284893593300898,0.48869098477694745,"{'max_depth': 15, 'min_samples_split': 10, 'min_samples_leaf': 9, 'max_features': None, 'criterion': 'entropy', 'class_weight': 'balanced'}"
+Decision Tree,19,0.5306996229842267,0.4674579582527088,"{'max_depth': 23, 'min_samples_split': 10, 'min_samples_leaf': 9, 'max_features': None, 'criterion': 'entropy', 'class_weight': 'balanced'}"
+Random Forest,15,0.47384920161467886,0.6156374353446386,"{'n_estimators': 400, 'max_depth': 26, 'min_samples_split': 12, 'min_samples_leaf': 1, 'max_features': 'sqrt', 'class_weight': None}"
+Random Forest,17,0.6014031078551051,0.6050142084635675,"{'n_estimators': 400, 'max_depth': 29, 'min_samples_split': 13, 'min_samples_leaf': 1, 'max_features': 'sqrt', 'class_weight': 'balanced'}"

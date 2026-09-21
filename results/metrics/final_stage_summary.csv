@@ -1,0 +1,2 @@
+Dataset,Task,Target,Positive_Class,Primary_Research_Domain,HPO_Method,Primary_HPO_Objective,Multiobjective_HPO_Objectives,Threshold_Optimization,Robustness_Seeds,Robustness_Folds_Per_Seed,SHAP_Method,SHAP_Stability_Experiments
+UCI Bank Marketing — bank-full.csv,Binary classification,y,yes,Marketing,Optuna,F1,F1 + PR-AUC,OOF F1-based threshold selection,5,3,SHAP LinearExplainer,15

@@ -1,0 +1,13 @@
+Feature,Top_10_Count,Top_10_Frequency_Percentage
+numeric__duration,15,100.0
+categorical__contact_unknown,15,100.0
+categorical__month_may,15,100.0
+categorical__poutcome_unknown,15,100.0
+categorical__contact_cellular,15,100.0
+categorical__month_jul,15,100.0
+categorical__housing_yes,15,100.0
+categorical__housing_no,14,93.33333333333333
+numeric__campaign,14,93.33333333333333
+categorical__month_aug,10,66.66666666666666
+categorical__month_nov,6,40.0
+categorical__poutcome_success,1,6.666666666666667

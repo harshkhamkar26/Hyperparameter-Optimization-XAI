@@ -1,0 +1,4 @@
+Dataset,Class_0,Class_1
+Original Training,31937,4231
+After SMOTENC,31937,31937
+Testing,7985,1058

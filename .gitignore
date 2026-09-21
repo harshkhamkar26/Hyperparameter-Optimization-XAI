@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw dataset - do not upload
+data/raw/*.csv
+
+# Plotly HTML files
+*.html
+
+# OS files
+.DS_Store
+Thumbs.db
